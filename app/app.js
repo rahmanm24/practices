@@ -30,6 +30,24 @@ app.get('/selected-stand/:id', function(req,res){
     });
 });
 
+app.get('/take-bike/:id', function (req, res) {
+    var standID = req.params.id;
+    var stand = new Stand(standID);
+    stand.getStandDetails().then(Promise =>{
+        res.render('take-bike', {stand: stand});
+    });
+
+});
+
+app.get('/return-bike/:id', function (req, res) {
+    var standID = req.params.id;
+    var stand = new Stand(standID);
+    stand.getStandDetails().then(Promise =>{
+        res.render('return-bike', {stand: stand});
+    });
+
+});
+
 
 app.listen(3000, function(){
     console.log("app running on http://127.0.0.1:3000");
